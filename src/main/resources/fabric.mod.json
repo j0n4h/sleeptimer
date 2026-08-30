@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "sleeptimer",
+	"version": "${version}",
+	"name": "Sleep Timer",
+	"description": "A customizable HUD that shows the in-game time and counts down until sleeping is available, including thunderstorm and dimension support.",
+	"authors": [
+		"5ubZero"
+	],
+	"license": "MIT License",
+	"icon": "assets/sleeptimer/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.subzero.SleepTimer"
+		],
+		"client": [
+			"com.subzero.sleeptimer.client.SleepTimerClient"
+		],
+		"modmenu": [
+			"com.subzero.sleeptimer.client.ModMenuIntegration"
+		]
+	},
+	"mixins": [
+		"sleeptimer.mixins.json",
+		{
+			"config": "sleeptimer.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	},
+	"recommends": {
+		"modmenu": "*",
+		"cloth-config": "*"
+	}
+}
