@@ -11,8 +11,8 @@ public class ModConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     // Default X and Y coordinates on the screen
-    public int xPosition = 1;
-    public int yPosition = 3;
+    public int xPosition = 10;
+    public int yPosition = 30;
     public int preparationPeriod = 120;
     public boolean enabled = true;
 
@@ -25,10 +25,15 @@ public class ModConfig {
 
     public boolean onlyShowClockInInventory = false;
 
-    public int earlyDayColor = 0xFF887799;
+    public boolean enableBackground = false;
+    public boolean enableShadowOverBackground = false;
+    public int backgroundPadding = 1;
+
+    public int earlyDayColor = 0xFF9966BB;
     public int availableColor = 0xFF00AAFF;
     public int inventoryColor = 0xFFE3D09D;
     public int thunderColor = 0xFFEE2F68;
+    public int backgroundColor = 0x58000000;
 
     private static ModConfig INSTANCE = new ModConfig();
 

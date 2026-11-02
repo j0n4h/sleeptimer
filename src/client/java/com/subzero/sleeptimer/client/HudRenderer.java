@@ -112,16 +112,33 @@ public class HudRenderer {
                 }
             }
 
-            int x = Math.round(context.guiWidth() * (ModMenuIntegration.getPreviewXPosition() / 100f));
-            int y = Math.round(context.guiHeight() * ((100 - ModMenuIntegration.getPreviewYPosition()) / 100f));
+            int x = Math.round(context.guiWidth() * (ModMenuIntegration.getPreviewXPosition() / 1000f));
+            int y = Math.round(context.guiHeight() * ((1000 - ModMenuIntegration.getPreviewYPosition()) / 1000f));
 
+            // Set vars for text background
+            int padding = ModConfig.get().backgroundPadding;
+            int textWidth = client.font.width(text);
+            int textHeight = client.font.lineHeight;
+
+            if(ModConfig.get().enableBackground){
+                // Draw text background
+                context.fill(
+                        x - padding,
+                        y - padding,
+                        x + textWidth + padding - 1,
+                        y + textHeight + padding - 2,
+                        ModConfig.get().backgroundColor
+                );
+            }
+
+            // Draw text (time and clock)
             context.text(
                     client.font,
                     text,
                     x,
                     y,
                     textColor,
-                    true
+                    !ModConfig.get().enableBackground || ModConfig.get().enableShadowOverBackground
             );
         });
     }

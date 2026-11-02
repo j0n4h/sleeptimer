@@ -33,10 +33,10 @@ dependencies {
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
 	// Cloth
-	implementation "me.shedaniel.cloth:cloth-config-fabric:26.2.155"
+	implementation "me.shedaniel.cloth:cloth-config-fabric:26.3.159"
 
 	// ModMenu
-	implementation "com.terraformersmc:modmenu:20.0.1"
+	implementation "com.terraformersmc:modmenu:21.0.0"
 }
 
 processResources {

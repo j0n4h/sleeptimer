@@ -56,27 +56,32 @@ public class ModMenuIntegration implements ModMenuApi {
 
             xPositionSlider = entryBuilder
                     .startIntSlider(
-                            Component.literal("X Position (%)"),
+                            Component.literal("X Position (‰)"),
                             ModConfig.get().xPosition,
                             0,
-                            100
+                            1000
                     )
-                    .setDefaultValue(1)
+                    .setDefaultValue(5)
                     .setSaveConsumer(value -> ModConfig.get().xPosition = value)
                     .build();
             general.addEntry(xPositionSlider);
 
             yPositionSlider = entryBuilder
                     .startIntSlider(
-                            Component.literal("Y Position (%)"),
+                            Component.literal("Y Position (‰)"),
                             ModConfig.get().yPosition,
                             0,
-                            100
+                            1000
                     )
-                    .setDefaultValue(3)
+                    .setDefaultValue(25)
                     .setSaveConsumer(value -> ModConfig.get().yPosition = value)
                     .build();
             general.addEntry(yPositionSlider);
+
+            general.addEntry(entryBuilder.startBooleanToggle(Component.literal("Render Text Background"), ModConfig.get().enableBackground)
+                    .setDefaultValue(false)
+                    .setSaveConsumer(newValue -> ModConfig.get().enableBackground = newValue)
+                    .build());
 
             general.addEntry(entryBuilder.startBooleanToggle(Component.literal("Only Show Timer in Inventory"), ModConfig.get().onlyShowTimerInInventory)
                     .setDefaultValue(false)
@@ -124,13 +129,29 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setTooltip(Component.literal("During Wind-Down, show the extended text (i.e. 'Sleep in') if it's disabled normally"))
                     .build());
 
+            advanced.addEntry(entryBuilder.startBooleanToggle(Component.literal("Render Text Shadow When Background Is Enabled"), ModConfig.get().enableShadowOverBackground)
+                    .setDefaultValue(false)
+                    .setSaveConsumer(newValue -> ModConfig.get().enableShadowOverBackground = newValue)
+                    .build());
+
+            advanced.addEntry(entryBuilder
+                    .startIntSlider(
+                            Component.literal("Text Background Padding"),
+                            ModConfig.get().backgroundPadding,
+                            0,
+                            5
+                    )
+                    .setDefaultValue(1)
+                    .setSaveConsumer(value -> ModConfig.get().backgroundPadding = value)
+                    .build());
+
             // --- COLORS ---
             colors.addEntry(entryBuilder.startAlphaColorField(Component.literal("Daytime Color"), ModConfig.get().earlyDayColor)
-                    .setDefaultValue(0xFFE3D09D)
+                    .setDefaultValue(0xFF9966BB)
                     .setSaveConsumer(newValue -> ModConfig.get().earlyDayColor = newValue)
                     .build());
 
-            colors.addEntry(entryBuilder.startAlphaColorField(Component.literal("Color when you can sleep"), ModConfig.get().availableColor)
+            colors.addEntry(entryBuilder.startAlphaColorField(Component.literal("Color When You Can Sleep"), ModConfig.get().availableColor)
                     .setDefaultValue(0xFF00AAFF)
                     .setSaveConsumer(newValue -> ModConfig.get().availableColor = newValue)
                     .build());
@@ -144,6 +165,12 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setDefaultValue(0xFFEE2F68)
                     .setSaveConsumer(newValue -> ModConfig.get().thunderColor = newValue)
                     .setTooltip(Component.literal("Color when you can sleep due to a thunderstorm"))
+                    .build());
+
+            colors.addEntry(entryBuilder.startAlphaColorField(Component.literal("Background Color"), ModConfig.get().backgroundColor)
+                    .setDefaultValue(0x58000000)
+                    .setSaveConsumer(newValue -> ModConfig.get().backgroundColor = newValue)
+                    .setTooltip(Component.literal("Color for the background if enabled"))
                     .build());
 
             // Save settings to disk
