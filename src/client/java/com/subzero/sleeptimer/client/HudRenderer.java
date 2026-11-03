@@ -115,10 +115,18 @@ public class HudRenderer {
             int x = Math.round(context.guiWidth() * (ModMenuIntegration.getPreviewXPosition() / 1000f));
             int y = Math.round(context.guiHeight() * ((1000 - ModMenuIntegration.getPreviewYPosition()) / 1000f));
 
-            // Set vars for text background
+            // Set vars for text background and padding
             int padding = ModConfig.get().backgroundPadding;
             int textWidth = client.font.width(text);
             int textHeight = client.font.lineHeight;
+            if(ModConfig.get().enableShadowOverBackground || !ModConfig.get().enableBackground){
+                textWidth += 1;
+                textHeight += 1;
+            }
+
+            // Clamp values to ensure the text is within the screen bounds
+            x = Math.clamp(x, padding, context.guiWidth() - textWidth - padding + 1);
+            y = Math.clamp(y, padding, context.guiHeight() - textHeight - padding + 2);
 
             if(ModConfig.get().enableBackground){
                 // Draw text background
