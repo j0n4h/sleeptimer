@@ -16,7 +16,7 @@ public class HudRenderer {
 
     public static void register() {
 
-        HudElementRegistry.addLast(ID, (context, tickDelta) -> {
+        HudElementRegistry.addLast(ID, (context, _) -> {
 
             ModConfig config = ModConfig.get();
 
@@ -71,6 +71,7 @@ public class HudRenderer {
             }
 
             // Pipe Draw Logic
+            //noinspection ConstantValue
             boolean drawPipe =
                 config.showInGameTime
                 && (!(dimension == Level.NETHER || dimension == Level.END) || inventoryOpen)

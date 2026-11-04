@@ -6,13 +6,14 @@ import net.fabricmc.loader.api.FabricLoader;
 import java.io.File;
 import java.nio.file.Files;
 
+@SuppressWarnings("CallToPrintStackTrace")
 public class ModConfig {
     private static final File FILE = new File(FabricLoader.getInstance().getConfigDir().toFile(), "sleeptimermod.json");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     // Default X and Y coordinates on the screen
-    public int xPosition = 10;
-    public int yPosition = 30;
+    public int xPosition = 5;
+    public int yPosition = 20;
     public int preparationPeriod = 120;
     public boolean enabled = true;
 

@@ -7,5 +7,6 @@ public class SleepTimerClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		ModConfig.load();
 		HudRenderer.register();
+		Commands.register();
 	}
 }

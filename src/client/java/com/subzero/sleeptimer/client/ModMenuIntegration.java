@@ -73,7 +73,7 @@ public class ModMenuIntegration implements ModMenuApi {
                             0,
                             1000
                     )
-                    .setDefaultValue(25)
+                    .setDefaultValue(20)
                     .setSaveConsumer(value -> ModConfig.get().yPosition = value)
                     .build();
             general.addEntry(yPositionSlider);
